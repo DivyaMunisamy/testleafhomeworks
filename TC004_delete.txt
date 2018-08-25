@@ -1,0 +1,38 @@
+package testcases;
+
+import org.openqa.selenium.WebElement;
+import org.testng.annotations.Test;
+
+import wdMethods.ProjectMethods;
+import wdMethods.SeMethods;
+
+public class TC004_DeletePage extends ProjectMethods {
+
+	@Test
+	public void Delete() throws InterruptedException
+	{
+	login();
+	WebElement link = locateElement("LinkText","CRM/SFA");
+	clickWithNoSnap(link);	
+	WebElement lead = locateElement("LinkText","Leads");
+	clickWithNoSnap(lead);
+	WebElement findlead = locateElement("LinkText","Find Leads");
+	clickWithNoSnap(findlead);
+	WebElement phone = locateElement("LinkText", "Phone");
+	clickWithNoSnap(phone);
+	WebElement number = locateElement("name","phoneNumber");
+	type(number,"12345678");
+	WebElement findlead1 = locateElement("xpath","//button[text()='Find Leads']");
+	click(findlead1);
+	Thread.sleep(3000);
+	WebElement resulting = locateElement("xpath","(//a[@class='linktext'])[4]");
+	click(resulting);
+	WebElement del = locateElement("xpath", "//a[text()='Delete']");
+	click(del);
+	WebElement errmsg = locateElement("xpath", "//div[@class='allSubSectionBlocks']");
+	getText(errmsg);
+	closeBrowser();
+	
+	}
+
+}

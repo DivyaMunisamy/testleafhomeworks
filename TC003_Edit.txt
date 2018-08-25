@@ -1,0 +1,42 @@
+package testcases;
+
+import org.openqa.selenium.WebElement;
+import org.testng.annotations.Test;
+
+import wdMethods.ProjectMethods;
+import wdMethods.SeMethods;
+
+public class TC003_EditPage extends ProjectMethods {
+@Test
+public void edit() throws InterruptedException
+{
+	login();
+WebElement link = locateElement("LinkText","CRM/SFA");
+click(link);	
+WebElement lead = locateElement("LinkText","Leads");
+click(lead);
+WebElement findlead = locateElement("LinkText","Find Leads");
+click(findlead);
+WebElement Firstname = locateElement("xpath", "(//input[@name='firstName'])[3]");
+type(Firstname, "Divya");
+WebElement findlead1 = locateElement("xpath","//button[text()='Find Leads']");
+click(findlead1);
+WebElement result = locateElement("LinkText","Divya");
+click(result);
+WebElement title = locateElement("xpath","//div[text()='View Lead']");
+verifyExactText(title, "View Lead");
+WebElement edit = locateElement("LinkText","Edit");
+click(edit);
+WebElement change = locateElement("id","updateLeadForm_companyName");
+change.clear();
+type(change,"Accenture");
+WebElement update = locateElement("class","smallSubmit");
+click(update);
+WebElement confirm = locateElement("xpath","//span[@id='viewLead_companyName_sp']");
+verifyExactText(confirm,"Accenture (10864)");
+Thread.sleep(3000);
+closeBrowser();
+
+	}
+
+}

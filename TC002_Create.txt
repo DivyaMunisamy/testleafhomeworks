@@ -1,0 +1,44 @@
+package testcases;
+
+import org.openqa.selenium.WebElement;
+import org.testng.annotations.Test;
+
+import wdMethods.ProjectMethods;
+import wdMethods.SeMethods;
+
+public class TC002_CreateLead extends ProjectMethods {
+	@Test
+	public void  createmethod()
+	{
+	//	{
+//	startApp("chrome","http://leaftaps.com/opentaps");
+//	WebElement username = locateElement("id","username");
+//	type(username, "DemoSalesManager");
+//	WebElement password = locateElement("id","password");
+//	type(password, "crmsfa");
+//	WebElement login = locateElement("class","decorativeSubmit");
+//	click(login);
+	WebElement link = locateElement("LinkText","CRM/SFA");
+	click(link);	
+	WebElement createlead = locateElement("LinkText","Create Lead");
+	click(createlead);
+	WebElement companyname=locateElement("id","createLeadForm_companyName");
+	type(companyname, "Accenture");
+	WebElement Firstname = locateElement("id", "createLeadForm_firstName");
+	type(Firstname, "Diviya");
+	WebElement Lastname = locateElement("id", "createLeadForm_lastName");
+	type(Lastname, "Paul");
+	WebElement source= locateElement("id","createLeadForm_dataSourceId");
+	selectDropDownUsingText(source, "Cold Call");
+	WebElement marketingcompaign=locateElement("id","createLeadForm_marketingCampaignId");
+	selectDropDownUsingIndex(marketingcompaign, 2);
+	WebElement phonenumber = locateElement("id","createLeadForm_primaryPhoneNumber");
+	type(phonenumber,"2782722882");
+	WebElement Email = locateElement("id","createLeadForm_primaryEmail");
+	type(Email,"div@gmail.com");
+	WebElement crtld = locateElement("class","smallSubmit");
+	click(crtld);
+	WebElement Firstname1 = locateElement("id", "viewLead_firstName_sp");
+	verifyExactText(Firstname1, "Diya");
+}
+}

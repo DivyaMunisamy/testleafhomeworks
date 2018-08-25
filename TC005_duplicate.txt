@@ -1,0 +1,47 @@
+package testcases;
+
+import org.openqa.selenium.WebElement;
+import org.testng.annotations.Test;
+
+import wdMethods.SeMethods;
+
+public class TC005_DuplicatePage extends SeMethods {
+
+		@Test
+		public void Login() throws InterruptedException
+		{
+		startApp("chrome","http://leaftaps.com/opentaps");
+		WebElement username = locateElement("id","username");
+		type(username, "DemoSalesManager");
+		WebElement password = locateElement("id","password");
+		type(password, "crmsfa");
+		WebElement login = locateElement("class","decorativeSubmit");
+		clickWithNoSnap(login);
+		WebElement link = locateElement("LinkText","CRM/SFA");
+		clickWithNoSnap(link);	
+		WebElement lead = locateElement("LinkText","Leads");
+		clickWithNoSnap(lead);
+		WebElement findlead = locateElement("LinkText","Find Leads");
+		clickWithNoSnap(findlead);
+		WebElement email = locateElement("xpath", "//span[text()='Email']");
+		clickWithNoSnap(email);
+		WebElement eid = locateElement("name","emailAddress");
+		type(eid,"Callum@tnas.com");
+		WebElement findlead1 = locateElement("xpath","//button[text()='Find Leads']");
+		click(findlead1);
+		Thread.sleep(3000);
+		WebElement resulting = locateElement("xpath","(//a[@class='linktext'])[4]");
+		click(resulting);
+		WebElement duplicate = locateElement("xpath", "//a[text()='Duplicate Lead']");
+		clickWithNoSnap(duplicate);
+		WebElement titleverify = locateElement("xpath", "//div[text()='Duplicate Lead']");
+		verifyTitle("Duplicate Lead | opentaps CRM");
+		WebElement creatlead = locateElement("xpath", "//input[@value='Create Lead']");
+		clickWithNoSnap(creatlead);
+		WebElement firstname = locateElement("id", "viewLead_firstName_sp");
+		verifyExactText(firstname, "Hary");
+		closeBrowser();
+		
+	}
+
+}

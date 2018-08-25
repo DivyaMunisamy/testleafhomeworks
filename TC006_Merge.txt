@@ -1,0 +1,62 @@
+package testcases;
+
+import org.openqa.selenium.WebElement;
+import org.testng.annotations.Test;
+
+import wdMethods.SeMethods;
+
+public class TC006_MergePage extends SeMethods {
+
+	@Test
+	public void Login() throws InterruptedException
+	{
+	startApp("chrome","http://leaftaps.com/opentaps");
+	WebElement username = locateElement("id","username");
+	type(username, "DemoSalesManager");
+	WebElement password = locateElement("id","password");
+	type(password, "crmsfa");
+	WebElement login = locateElement("class","decorativeSubmit");
+	clickWithNoSnap(login);
+	WebElement link = locateElement("LinkText","CRM/SFA");
+	clickWithNoSnap(link);	
+	WebElement lead = locateElement("LinkText","Leads");
+	clickWithNoSnap(lead);
+	WebElement merge = locateElement("LinkText","Merge Leads");
+	clickWithNoSnap(merge);
+	WebElement icon = locateElement("xpath","//img[@src='/images/fieldlookup.gif']");
+	clickWithNoSnap(icon);
+	switchToWindow(1);
+	WebElement leadid = locateElement("xpath","//input[@name='id']");
+	type(leadid,"10073");
+	WebElement clickfindlead = locateElement("xpath","(//button[@class='x-btn-text'])[1]");
+	clickWithNoSnap(clickfindlead);
+	Thread.sleep(3000);
+	WebElement resulting = locateElement ("LinkText","10073");
+	clickWithNoSnap(resulting);
+	switchToWindow(0);
+	WebElement secondicon =locateElement("xpath","(//img[@src='/images/fieldlookup.gif'])[2]");
+	clickWithNoSnap(secondicon);
+	switchToWindow(1);
+	WebElement leadid1 = locateElement("xpath","//div[@class='x-form-element']/input");
+	type(leadid1,"10075");
+	WebElement clickfindlead1 = locateElement("xpath","(//button[@class='x-btn-text'])[1]");
+	clickWithNoSnap(clickfindlead1);
+	Thread.sleep(3000);
+	WebElement resulting2 = locateElement ("LinkText","10075");
+	clickWithNoSnap(resulting2);
+	switchToWindow(0);
+	WebElement merge1 = locateElement ("LinkText","Merge");
+	clickWithNoSnap(merge1);
+	acceptAlert();
+	WebElement findlead = locateElement ("LinkText","Find Leads");
+	clickWithNoSnap(findlead);
+	WebElement id = locateElement("xpath","//input[@name='id']");
+	type(id,"10073");
+	WebElement clickled = locateElement ("xpath","//button[text() ='Find Leads']");
+	click(clickled);
+	closeAllBrowsers();
+	
+	
+	}
+
+}
